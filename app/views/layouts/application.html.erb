@@ -4,14 +4,50 @@
     <title>Omrails</title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css', integrity: 'sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj', crossorigin: 'anonymous' %> 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  	<%= link_to "Home", root_path %>
-	<%= link_to "About", about_path %>
-	<%= link_to "Contact Us", contact_path %>
-    <%= yield %>
+  	<nav class="navbar navbar-full navbar-dark bg-primary">
+  		<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+        <a class="navbar-brand" href="/"><strong>CRT^</strong></a>
+    		<ul class="nav navbar-nav">
+      		<li class="nav-item active">
+        			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      		</li>
+      		<li class="nav-item">
+        			<%= link_to "About", about_path, class: "nav-link" %>
+      		</li>
+  		    <li class="nav-item">
+  		    	<%= link_to "Services", services_path, class: "nav-link" %>
+  		    </li>
+  		    <!-- <li class="nav-item">
+  		    	<%= link_to "Projects", projects_path, class: "nav-link" %>
+  		    </li> -->
+  		    <li class="nav-item">
+  		    	<%= link_to "Recognition", recognition_path, class: "nav-link" %>
+  		    </li>
+  		    <li class="nav-item">
+  		    	<%= link_to "Contact", contact_path, class: "nav-link" %>
+  		    </li>
+    		</ul>
+    		<form class="form-inline pull-xs-right">
+  		    <!-- <input class="form-control" type="text" placeholder="Search"> -->
+  		    <button class="btn btn-outline-success" type="submit">Login</button>
+    		</form>
+      </div>
+	</nav>
+	<%= yield %>
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">&copy; <%= Time.now.year %> Civic Response Team</span>
+		</div>
+	</footer>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
   </body>
 </html>
