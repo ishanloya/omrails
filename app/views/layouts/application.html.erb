@@ -34,19 +34,36 @@
   		    <li class="nav-item">
   		    	<%= link_to "Contact", contact_path, class: "nav-link" %>
   		    </li>
-    		</ul>
-    		<form class="form-inline pull-xs-right">
-  		    <!-- <input class="form-control" type="text" placeholder="Search"> -->
-  		    <button class="btn btn-outline-success" type="submit">Login</button>
-    		</form>
+    		<% if user_signed_in? %>
+          <li class="nav-item pull-xs-right">
+            <%= link_to "Logout", signout_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item pull-xs-right">
+            <%= link_to "Sign up", signup_path, class: "nav-link btn btn-outline-info" %>
+          </li>
+          <li class="nav-item pull-xs-right">
+            <%= link_to "Login", login_path, class: "nav-link" %>
+          </li>
+          <!-- <form class="form-inline pull-xs-right">
+    		    <input class="form-control" type="text" placeholder="Search">
+    		    <button class="btn btn-outline-success" type="submit">Login</button>
+      		</form> -->
+        <% end %>
+        </ul>
       </div>
 	</nav>
+
+  <!-- Flash messages -->
+  <% flash.each do |name, message| %>
+    <%= content_tag(:div, message, class: "alert alert-info #{name}") %>
+  <% end %>
+
 	<%= yield %>
 	<footer class="footer">
 		<div class="container">
 			<span class="text-muted">&copy; <%= Time.now.year %> Civic Response Team</span>
 		</div>
 	</footer>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
   </body>
 </html>
