@@ -1,34 +1,47 @@
 <div class="container">
 	<h1 class="m-t-3 m-b-2">Tweets</h1>
 
-	<table class="table table-hover">
-	  <thead class="thead-default">
-	    <tr>
-	      <th>User</th>
-	      <th>Content</th>
-	      <th colspan="3"></th>
-	    </tr>
-	  </thead>
+	<div class="row">
+	
 
-	  <tbody>
-	    <% @tweets.each do |tweet| %>
-	      <tr>
-	        <td><%= tweet.user.email %></td>
-	        <td><%= tweet.content %></td>
-	        <td><%= link_to 'Show', tweet %></td>
-	        <% if tweet.user == current_user %>
-	       	 <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-	        	<td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	        <% end %>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
+		<div class="col-md-4">
+			<div class="card card-block">
+				<% if user_signed_in? %> 
+					<h4 class="card-title"><%= current_user.email %></h4>
+					<%= link_to 'New Tweet', new_tweet_path, class:"card-link" %>
+				<% end %>
+			</div>	
+		</div>
+		<div class="col-md-8">
+			
+
+			<% @tweets.each do |tweet| %>
+				<div class="card card-block">
+				  <h4 class="card-title"><%= tweet.user.email %></h4>
+				  <p class="card-text"><%= tweet.content %></p>
+				  <p class="card-text">
+				  	<% if tweet.created_at != tweet.updated_at %>
+				  		<small class="text-muted">Last updated <%= time_ago_in_words(tweet.updated_at.localtime) %> ago</small>
+				  	<% else %>
+				  		<small class="text-muted">Created <%= time_ago_in_words(tweet.created_at.localtime) %> ago</small>
+				  	<% end %>
+				  </p>
+				  <%= link_to 'Show', tweet, class:"card-link" %>
+				  <% if tweet.user == current_user %>
+				  	<%= link_to 'Edit', edit_tweet_path(tweet), class:"card-link" %>
+				  	<%= link_to 'Delete', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
+				  <% end %>
+				</div>
+			<% end %>
+
+		</div>
+	</div>
+	
+
+	
 
 	<br>
 
-	<% if user_signed_in? %>
-		<%= link_to 'New Tweet', new_tweet_path %>
-	<% end %>
+	
 
 </div>
