@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
@@ -28,9 +29,9 @@
   		    <!-- <li class="nav-item">
   		    	<%= link_to "Projects", projects_path, class: "nav-link" %>
   		    </li> -->
-  		    <li class="nav-item">
+  		   <!--  <li class="nav-item">
   		    	<%= link_to "Recognition", recognition_path, class: "nav-link" %>
-  		    </li>
+  		    </li> -->
           <li class="nav-item">
             <%= link_to "Tweets", tweets_path, class: "nav-link" %>
           </li>
@@ -43,7 +44,7 @@
           </li>
         <% else %>
           <li class="nav-item pull-xs-right">
-            <%= link_to "Sign up", signup_path, class: "btn btn-outline-success" %>
+            <%= link_to "Sign up", signup_path, class: "btn btn-success" %>
           </li>
           <li class="nav-item pull-xs-right">
             <%= link_to "Login", login_path, class: "nav-link" %>
