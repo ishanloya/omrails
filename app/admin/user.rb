@@ -29,9 +29,10 @@ ActiveAdmin.register User do
 
 	index do
 		id_column
+		column :first_name
+		column :handle
 		column :email
 		column :admin
-		column :handle
 		actions
 	end
 
