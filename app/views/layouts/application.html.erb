@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css", media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -69,5 +70,35 @@
 			<span class="text-muted">&copy; <%= Time.now.year %> Civic Response Team</span>
 		</div>
 	</footer>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('.slick_center').slick({
+      centerMode: true,
+      // centerPadding: '60px',
+      slidesToShow: 3,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            // centerPadding: '40px',
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            // centerPadding: '40px',
+            slidesToShow: 3
+          }
+        }
+      ]
+    }); 
+  });
+  </script>
   </body>
 </html>

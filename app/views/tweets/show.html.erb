@@ -1,16 +1,22 @@
 <div class="container m-t-3">
-	<p>
-	  <strong>User:</strong>
-	  <%= @tweet.user %>
-	</p>
-
-	<p>
-	  <strong>Content:</strong>
-	  <%= @tweet.content %>
-	</p>
-
-	<% if @tweet.user == current_user %>
-		<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-	<% end %>
-	<%= link_to 'Back', tweets_path %>
+	<div class="card card-block">
+	  <h4 class="card-title"><%= @tweet.user.handle %></h4>
+	  <p class="card-text"><%= @tweet.content %></p>
+	  <p class="card-text">
+	  	<% if @tweet.created_at != @tweet.updated_at %>
+	  		<small class="text-muted">Last updated <%= time_ago_in_words(@tweet.updated_at.localtime) %> ago</small>
+	  	<% else %>
+	  		<small class="text-muted">Created <%= time_ago_in_words(@tweet.created_at.localtime) %> ago</small>
+	  	<% end %>
+	  </p>
+	  <% if @tweet.user == current_user %>
+	  	<%= link_to 'Edit', edit_tweet_path(@tweet), class:"card-link" %>
+	  	<%= link_to 'Delete', @tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
+	  <% end %>
+	  <%= link_to 'Back', tweets_path, class:"card-link" %>
+	</div>
 </div>
+
+
+
+				

@@ -1,45 +1,32 @@
 <div class="container">
-	<h1 class="m-t-3 m-b-2">Tweets</h1>
-
-	<div class="row">
+	<div class="row m-b-3 m-t-3">
 		<div class="col-md-4">
 			<div class="card card-block">
 				<% if user_signed_in? %> 
 					<h4 class="card-title"><%= current_user.first_name + " " + current_user.last_name %></h4>
+					<h6 class="text-muted"><%= current_user.handle %></h6>
 					<%= link_to 'New Tweet', new_tweet_path, class:"card-link" %>
 				<% end %>
 			</div>	
 		</div>
 
-		<div class="col-md-8">
-			<% @tweets.each do |tweet| %>
-				<div class="card card-block">
-				  <h4 class="card-title"><%= tweet.user.handle %></h4>
-				  <p class="card-text"><%= tweet.content %></p>
-				  <p class="card-text">
-				  	<% if tweet.created_at != tweet.updated_at %>
+		<div class="col-md-8">		
+			<div class="list-group">
+				<% @tweets.reverse_each do |tweet| %>
+					<%= link_to tweet, class: "list-group-item list-group-item-action" do %>
+				    <h5 class="list-group-item-heading"><%= tweet.user.handle %></h5>
+				    <p class="list-group-item-text m-b-1"><%= tweet.content %></p>
+				    <% if tweet.created_at != tweet.updated_at %>
 				  		<small class="text-muted">Last updated <%= time_ago_in_words(tweet.updated_at.localtime) %> ago</small>
 				  	<% else %>
 				  		<small class="text-muted">Created <%= time_ago_in_words(tweet.created_at.localtime) %> ago</small>
 				  	<% end %>
-				  </p>
-				  <%= link_to 'Show', tweet, class:"card-link" %>
-				  <% if tweet.user == current_user %>
-				  	<%= link_to 'Edit', edit_tweet_path(tweet), class:"card-link" %>
-				  	<%= link_to 'Delete', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
-				  <% end %>
-				</div>
-			<% end %>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
 
-
 	</div>
-	
-
-	
-
-	<br>
-
-	
 
 </div>
+
