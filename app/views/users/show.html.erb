@@ -1,22 +1,25 @@
 <div class="container">
 	<div class="row m-b-3 m-t-3">
 		<div class="col-md-4">
-			<div class="card card-block">
+			<div class="card">
 			<% if user_signed_in? %> 
-				<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
-				<p class="card-text"><%= @user.username %></p>
-				<% if current_user.following?(@user) %>
-					<p class="card-text"><%= link_to "Unfollow", unfollow_user_path(@user.username), method: :delete %></p>
+				<%= gravatar_image_tag(@user.email.gsub('spam', 'mdeering'), "alt": @user.username, :gravatar => { :size => 200 }) %>
+				<div class="card-block">
+					<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
+					<p class="card-text"><%= @user.username %></p>
+					<% if current_user.following?(@user) %>
+						<p class="card-text"><%= link_to "Unfollow", unfollow_user_path(@user.username), method: :delete %></p>
+					<% else %>
+						<p class="card-text"><%= link_to "Follow", follow_user_path(@user.username), method: :post %></p>
+					<% end %>
+				</div>
 				<% else %>
-					<p class="card-text"><%= link_to "Follow", follow_user_path(@user.username), method: :post %></p>
+					<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
+					<p class="card-text"><%= @user.username %></p>
+					<p class="card-text">
+						<%= link_to 'Sign up now!', signup_path, class:"text-success" %>
+					</p>
 				<% end %>
-			<% else %>
-				<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
-				<p class="card-text"><%= @user.username %></p>
-				<p class="card-text">
-					<%= link_to 'Sign up now!', signup_path, class:"text-success" %>
-				</p>
-			<% end %>
 			</div>	
 		</div>
 
