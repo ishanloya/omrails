@@ -3,7 +3,11 @@
 
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= devise_error_messages! %>
+  <% if devise_error_messages? %>
+    <div class="alert alert-danger" role="alert">
+      <%= devise_error_messages! %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :email %><br />

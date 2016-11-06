@@ -2,7 +2,11 @@
   
   <h2>Sign up</h2>
   
-  <%= devise_error_messages! %>
+  <% if devise_error_messages? %>
+    <div class="alert alert-danger" role="alert">
+      <%= devise_error_messages! %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :email %>
