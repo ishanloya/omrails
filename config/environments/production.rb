@@ -92,7 +92,7 @@ Rails.application.configure do
       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
       s3_region: ENV.fetch('AWS_REGION'),
     },
-    url: 'heroku-rails.s3-website-us-east-1.amazonaws.com',
-    path: '/:class/:attachment/:id_partition/:style/:filename'
+    url: 'heroku-rails.s3.amazonaws.com'
+    # path: '/:class/:attachment/:id_partition/:style/:filename'
   }
 end
