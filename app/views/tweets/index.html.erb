@@ -4,7 +4,7 @@
 			<div class="card card-block">
 				<% if user_signed_in? %> 
 					<h4 class="card-title"><%= current_user.first_name + " " + current_user.last_name %></h4>
-					<h6 class="text-muted"><%= current_user.handle %></h6>
+					<h6 class="text-muted"><%= current_user.username %></h6>
 					<%= link_to 'New Tweet', new_tweet_path, class:"card-link" %>
 				<% end %>
 			</div>	
@@ -14,7 +14,7 @@
 			<div class="list-group">
 				<% @tweets.reverse_each do |tweet| %>
 					<%= link_to tweet, class: "list-group-item list-group-item-action" do %>
-				    <h5 class="list-group-item-heading"><%= tweet.user.handle %></h5>
+				    <h5 class="list-group-item-heading"><%= tweet.user.username %></h5>
 				    <p class="list-group-item-text m-b-1"><%= tweet.content %></p>
 				    <% if tweet.created_at != tweet.updated_at %>
 				  		<small class="text-muted">Last updated <%= time_ago_in_words(tweet.updated_at.localtime) %> ago</small>

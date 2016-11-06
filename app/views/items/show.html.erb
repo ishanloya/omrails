@@ -36,7 +36,7 @@
 	  	<% if @item.created_at != @item.updated_at %>
 	  		<small class="text-muted">Last updated <%= time_ago_in_words(@item.updated_at.localtime) %> ago</small>
 	  	<% else %>
-	  		<small class="text-muted">Created by <%= @item.user.handle %> <%= time_ago_in_words(@item.created_at.localtime) %> ago</small>
+	  		<small class="text-muted">Created by <%= @item.user.username %> <%= time_ago_in_words(@item.created_at.localtime) %> ago</small>
 	  	<% end %>
 	  </p>
 	  <% if @item.user == current_user %>

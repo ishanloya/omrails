@@ -1,6 +1,6 @@
 <div class="container m-t-3">
 	<div class="card card-block">
-	  <h4 class="card-title"><%= @tweet.user.handle %></h4>
+	  <h4 class="card-title"><%= @tweet.user.username %></h4>
 	  <p class="card-text"><%= @tweet.content %></p>
 	  <p class="card-text">
 	  	<% if @tweet.created_at != @tweet.updated_at %>
