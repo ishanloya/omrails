@@ -8,6 +8,11 @@
 							<%= link_to current_user.username, user_path(current_user.username), class:"card-link" %>
 							<%= link_to 'New Tweet', new_tweet_path, class:"card-link text-nowrap" %>
 						</p>
+				<% else %>
+						<h4 class="card-title">Join the discussion</h4>
+						<p class="card-text">
+							<%= link_to 'Sign up now!', signup_path, class:"btn btn-success" %>
+						</p>
 				<% end %>
 			</div>	
 		</div>

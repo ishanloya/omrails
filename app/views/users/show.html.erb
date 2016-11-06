@@ -2,6 +2,7 @@
 	<div class="row m-b-3 m-t-3">
 		<div class="col-md-4">
 			<div class="card card-block">
+			<% if user_signed_in? %> 
 				<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
 				<p class="card-text"><%= @user.username %></p>
 				<% if current_user.following?(@user) %>
@@ -9,6 +10,13 @@
 				<% else %>
 					<p class="card-text"><%= link_to "Follow", follow_user_path(@user.username), method: :post %></p>
 				<% end %>
+			<% else %>
+				<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
+				<p class="card-text"><%= @user.username %></p>
+				<p class="card-text">
+					<%= link_to 'Sign up now!', signup_path, class:"text-success" %>
+				</p>
+			<% end %>
 			</div>	
 		</div>
 
