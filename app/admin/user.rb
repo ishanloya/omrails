@@ -13,7 +13,7 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-	permit_params :email, :admin, :first_name, :last_name, :username
+	permit_params :email, :admin, :first_name, :last_name, :username, :bio
 
 	form do |f|
 		f.semantic_errors
@@ -23,6 +23,7 @@ ActiveAdmin.register User do
 			f.inputs :username
 			f.inputs :first_name
 			f.inputs :last_name
+			f.inputs :bio
 		end
 		f.actions
 	end
