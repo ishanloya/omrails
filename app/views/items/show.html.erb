@@ -1,44 +1,31 @@
-<!-- <div class="container">
-	<p>
-	  <strong>User:</strong>
-	  <%= @item.user %>
-	</p>
-
-	<p>
-	  <strong>Title:</strong>
-	  <%= @item.title %>
-	</p>
-
-	<p>
-	  <strong>Url:</strong>
-	  <%= @item.url %>
-	</p>
-
-	<p>
-	  <strong>Text:</strong>
-	  <%= @item.text %>
-	</p>
-
-	<%= link_to 'Edit', edit_item_path(@item) %> |
-	<%= link_to 'Back', items_path %>
-</div> -->
-
 <div class="container m-t-3">
 	<div class="card card-block">
 	  <h4 class="card-title"><%= @item.title %></h4>
 	  <% if @item.url? %>
-	  	<p class="card-text"><%= @item.url %></p>
+	  	<p class="card-text" style="word-wrap:break-word; word-break:break-word;"><strong>URL: </strong><%= link_to @item.url, "#{@item.url}", target: "_blank", rel: "nofollow" %></p>
 	  <% end %>
 	  <% if @item.text? %>
 	  	<p class="card-text"><%= @item.text %></p>
 	  <% end %>
 	  <p class="card-text">
+	  <% if @item.votes_for.up.size > 0 %>
+      <span class="tag tag-success tag-pill float-xs-right"><%= image_tag "heart.png", "style":"width:15px;margin-right:3px;"%> <%= @item.votes_for.up.size %></span>
+    <% end %>
 	  	<% if @item.created_at != @item.updated_at %>
 	  		<small class="text-muted">Last updated <%= time_ago_in_words(@item.updated_at.localtime) %> ago</small>
 	  	<% else %>
 	  		<small class="text-muted">Created by <%= @item.user.username %> <%= time_ago_in_words(@item.created_at.localtime) %> ago</small>
 	  	<% end %>
 	  </p>
+
+	  <% if user_signed_in? %>
+      <% if current_user.voted_up_on? @item %>
+        <%= link_to 'Unlike', unvote_item_path(@item), method: :delete, data: { confirm: 'Remove your like?' }, class:"card-link" %>
+      <% else %>
+        <%= link_to 'Like', vote_item_path(@item), method: :post, class:"card-link" %>
+      <% end %>
+    <% end %>
+
 	  <% if @item.user == current_user %>
 	  	<%= link_to 'Edit', edit_item_path(@item), class:"card-link" %>
 	  	<%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
