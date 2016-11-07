@@ -2,30 +2,33 @@
 	<div class="row m-b-3 m-t-3">
 		<div class="col-md-4">
 			<div class="card">
-			<% if user_signed_in? %> 
-				<%= gravatar_image_tag(@user.email.gsub('spam', 'mdeering'), "alt": @user.username, "gravatar": { :size => 220 }, "style":"width:100%;max-width:220px;") %>
 				<div class="card-block">
-					<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
-					<p class="card-text"><%= @user.username %></p>
-					<% if current_user.following?(@user) %>
-						<p class="card-text"><%= link_to "Unfollow", unfollow_user_path(@user.username), method: :delete %></p>
+					<% if user_signed_in? %> 
+						<%= gravatar_image_tag(@user.email.gsub('spam', 'mdeering'), "alt": @user.username, "gravatar": { :size => 220 }, "style":"width:100%;height:100%;max-width:220px;", class:"m-b-1") %>
+				
+						<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
+						<p class="card-text"><%= @user.username %></p>
+						<% if current_user.following?(@user) %>
+							<p class="card-text"><%= link_to "Unfollow", unfollow_user_path(@user.username), method: :delete %></p>
+						<% else %>
+							<p class="card-text"><%= link_to "Follow", follow_user_path(@user.username), method: :post %></p>
+						<% end %>
+				
 					<% else %>
-						<p class="card-text"><%= link_to "Follow", follow_user_path(@user.username), method: :post %></p>
+						<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
+						<p class="card-text"><%= @user.username %></p>
+						<p class="card-text">
+							<%= link_to 'Sign up now!', signup_path, class:"text-success" %>
+						</p>
 					<% end %>
-				</div>
-				<% else %>
-					<h4 class="card-title"><%= @user.first_name + " " + @user.last_name %></h4>
-					<p class="card-text"><%= @user.username %></p>
-					<p class="card-text">
-						<%= link_to 'Sign up now!', signup_path, class:"text-success" %>
-					</p>
-				<% end %>
-			</div>	
+				</div>	
+			</div>
 		</div>
 
-		<div class="col-md-8">		
+		<div class="col-md-8">	
+		<h2>Latest Tweets</h2>	
 			<div class="list-group">
-				<% @tweets.reverse_each do |tweet| %>
+				<% @tweets.last(2).reverse_each do |tweet| %>
 					<%= link_to tweet, class: "list-group-item list-group-item-action" do %>
 				    <h5 class="list-group-item-heading"><%= tweet.user.username %></h5>
 				    <p class="list-group-item-text m-b-1"><%= tweet.content %></p>
@@ -37,6 +40,29 @@
 					<% end %>
 				<% end %>
 			</div>
+			<%= link_to "View all", tweets_path %> 
+
+			<h2 class="m-t-2">Latest Items</h2>
+			<div class="list-group">
+        <% @items.last(2).reverse_each do |item| %>
+          <%= link_to item, class: "list-group-item list-group-item-action" do %>
+
+            <h5 class="list-group-item-heading"><%= item.title %></h5>
+            <p class="list-group-item-text" style="word-wrap:break-word; word-break:break-word;"><%= item.url %></p>
+            <p class="list-group-item-text m-b-1"><%= item.text %></p>
+            <% if item.votes_for.up.size > 0 %>
+              <span class="tag tag-success tag-pill float-xs-right"><%= image_tag "heart.png", "style":"width:15px;margin-right:3px;"%> <%= item.votes_for.up.size %></span>
+            <% end %>
+            <% if item.created_at != item.updated_at %>
+              <small class="text-muted">Last updated <%= time_ago_in_words(item.updated_at.localtime) %> ago by <%= item.user.username %></small>
+            <% else %>
+              <small class="text-muted">Created <%= time_ago_in_words(item.created_at.localtime) %> ago by <%= item.user.username %></small>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to "View all", items_path %> 
+
 		</div>
 
 	</div>
