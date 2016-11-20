@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :wards
   ActiveAdmin.routes(self)
   devise_for :users
   as :user do

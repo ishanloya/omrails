@@ -1,0 +1,178 @@
+<%= form_for(ward) do |f| %>
+  <% if ward.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ward.errors.count, "error") %> prohibited this ward from being saved:</h2>
+
+      <ul>
+      <% ward.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :zone %>
+    <%= f.number_field :zone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ward_number %>
+    <%= f.number_field :ward_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ward_name %>
+    <%= f.text_field :ward_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ward_officer %>
+    <%= f.text_field :ward_officer %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ward_officer_number %>
+    <%= f.number_field :ward_officer_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :corporator %>
+    <%= f.text_field :corporator %>
+  </div>
+
+  <div class="field">
+    <%= f.label :corporator_number %>
+    <%= f.number_field :corporator_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :inspector %>
+    <%= f.text_field :inspector %>
+  </div>
+
+  <div class="field">
+    <%= f.label :inspector_number %>
+    <%= f.number_field :inspector_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :jawan %>
+    <%= f.text_field :jawan %>
+  </div>
+
+  <div class="field">
+    <%= f.label :jawan_number %>
+    <%= f.number_field :jawan_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amc_labour_male %>
+    <%= f.number_field :amc_labour_male %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amc_labour_female %>
+    <%= f.number_field :amc_labour_female %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pvt_labour_male %>
+    <%= f.number_field :pvt_labour_male %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pvt_labour_female %>
+    <%= f.number_field :pvt_labour_female %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :v_haathgadi %>
+    <%= f.number_field :v_haathgadi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_cyclericks %>
+    <%= f.number_field :v_cyclericks %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_hydraulicauto %>
+    <%= f.number_field :v_hydraulicauto %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_loadingauto %>
+    <%= f.number_field :v_loadingauto %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_tractor %>
+    <%= f.number_field :v_tractor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_407 %>
+    <%= f.number_field :v_407 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hook_loader %>
+    <%= f.number_field :hook_loader %>
+  </div>
+
+  <div class="field">
+    <%= f.label :skip_loader %>
+    <%= f.number_field :skip_loader %>
+  </div>
+
+  <div class="field">
+    <%= f.label :households %>
+    <%= f.number_field :households %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comm_est %>
+    <%= f.number_field :comm_est %>
+  </div>
+
+  <div class="field">
+    <%= f.label :edu_est %>
+    <%= f.number_field :edu_est %>
+  </div>
+
+  <div class="field">
+    <%= f.label :med_est %>
+    <%= f.number_field :med_est %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waste_org %>
+    <%= f.text_field :waste_org %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waste_dry %>
+    <%= f.text_field :waste_dry %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waste_org_qty %>
+    <%= f.text_field :waste_org_qty %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waste_dry_qty %>
+    <%= f.text_field :waste_dry_qty %>
+  </div>
+
+  <div class="field">
+    <%= f.label :waste_haz_qty %>
+    <%= f.text_field :waste_haz_qty %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

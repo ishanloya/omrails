@@ -33,3 +33,27 @@ body {
 
 // Prevent names from breaking to new line
 .nobr { white-space:nowrap; }
+
+table th.text-center, table td.text-center { 
+    text-align: center;
+}
+
+.totals {
+  color: $gray-light;
+  font-weight: bold;
+}
+
+
+.card > .list-group-flush {
+  > .list-group-item {
+    border-left: 0;
+    border-right: 0;
+  }
+  &:first-child .list-group-item:first-of-type {
+    border-top: 0;
+  }
+
+  &:last-child .list-group-item:last-of-type {
+    border-bottom: 0;
+  }
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107024843) do
+ActiveRecord::Schema.define(version: 20161120135330) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -95,6 +95,45 @@ ActiveRecord::Schema.define(version: 20161107024843) do
     t.datetime "updated_at"
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  end
+
+  create_table "wards", force: :cascade do |t|
+    t.integer  "zone"
+    t.string   "ward_number"
+    t.string   "ward_name"
+    t.string   "ward_officer"
+    t.string   "ward_officer_number"
+    t.string   "corporator"
+    t.string   "corporator_number"
+    t.string   "inspector"
+    t.string   "inspector_number"
+    t.string   "jawan"
+    t.string   "jawan_number"
+    t.integer  "amc_labour_male"
+    t.integer  "amc_labour_female"
+    t.integer  "pvt_labour_male"
+    t.integer  "pvt_labour_female"
+    t.integer  "total_labour_male"
+    t.integer  "total_labour_female"
+    t.integer  "v_haathgadi"
+    t.integer  "v_cyclericks"
+    t.integer  "v_hydraulicauto"
+    t.integer  "v_loadingauto"
+    t.integer  "v_tractor"
+    t.integer  "v_407"
+    t.integer  "hook_loader"
+    t.integer  "skip_loader"
+    t.integer  "households"
+    t.integer  "comm_est"
+    t.integer  "edu_est"
+    t.integer  "med_est"
+    t.string   "waste_org"
+    t.string   "waste_dry"
+    t.float    "waste_org_qty"
+    t.float    "waste_dry_qty"
+    t.float    "waste_haz_qty"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end

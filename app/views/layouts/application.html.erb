@@ -68,6 +68,16 @@
 	<footer class="footer">
 		<div class="container">
 			<span class="text-muted">&copy; <%= Time.now.year %> Civic Response Team</span>
+      <div class="pull-xs-right">
+        <form class="form-inline" action="https://tinyletter.com/ishanloya" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/ishanloya', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+          <div class="form-group" style="line-height: 0;">
+            <label class="sr-only" for="tlemail">Email address</label>
+            <input type="email" class="form-control" id="tlemail" placeholder="Enter email">
+            <input type="hidden" value="1" name="embed"/>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Newsletter</button>
+        </form>
+      </div>
 		</div>
 	</footer>
   <%= javascript_include_tag 'https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' %>

@@ -1,0 +1,170 @@
+<div class="container">
+  <nav class="breadcrumb m-t-3">
+    <%= link_to "Wards", wards_path, class: "breadcrumb-item" %>
+    <span class="breadcrumb-item active">Ward <%= @ward.ward_number %></span>
+  </nav>  
+  <div class="row m-b-3">
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">Ward <%= @ward.ward_number %> <small class="text-muted">Zone <%= @ward.zone %></small></h4>
+          <p class="card-text"><%= @ward.ward_name %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <!-- <li class="list-group-item text-success">Waste Quantity (kg)</li> -->
+          <li class="list-group-item">
+            <span class="tag tag-success tag-pill pull-xs-right"><%= @ward.households %></span>
+            Households served<br><small class="text-muted"><%= @ward.waste_org %></small>
+          </li>
+          <li class="list-group-item">
+            <span class="tag tag-success tag-pill pull-xs-right"><%= @ward.waste_org_qty.to_i %> kg</span>
+            Organic Waste<br><small class="text-muted"><%= @ward.waste_org %></small>
+          </li>
+          <li class="list-group-item">
+            <span class="tag tag-success tag-pill pull-xs-right"><%= @ward.waste_dry_qty.to_i %> kg</span>
+            Recyclable Waste<br><small class="text-muted"><%= @ward.waste_dry %></small>
+          </li>
+          <li class="list-group-item">
+            <span class="tag tag-success tag-pill pull-xs-right"><%= @ward.waste_haz_qty.to_i %> kg</span>
+            Hazardous Waste<br><small class="text-muted">Not assigned</small>
+          </li>
+        </ul>
+        <div class="card-block">
+          <%= link_to "Edit Info", edit_ward_path(@ward), class: "card-link" %><br>
+          <%= link_to "Print Profile", class: "card-link" %><br>
+          <%= link_to "Email PDF", class: "card-link" %><br>
+          <%= link_to 'Delete Ward', @ward, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
+        </div>  
+      </div>
+
+      <h2 class="m-t-2 m-b-1">Vehicles &amp; Containers</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.v_haathgadi %></span>
+          Haathgadis
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"> <%= @ward.v_cyclericks %></span>
+          Cycle Rickshaws
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.v_hydraulicauto %></span>
+          Hydraulic Autos
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.v_loadingauto %></span>
+          Loading Autos
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.v_tractor %></span>
+          Tractors
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.v_407 %></span>
+          407
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.hook_loader %></span>
+          Hook Loaders
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.skip_loader %></span>
+          Skip Loaders
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-7 offset-md-1">
+      <h1 class="display-4 m-b-2">Ward <%= @ward.ward_number %> <small class="text-success"><%= @ward.ward_name %></small></h1>
+
+      <h2 class="m-t-2 m-b-1">Administration</h2>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            <strong>Ward Officer</strong><br>
+            <%= @ward.ward_officer %><br>
+            <span class="nobr"><%= image_tag("call.png", "style":"width:15px;") %>
+            <%= @ward.ward_officer_number %></span>
+          </p>
+          <p>
+            <strong>Corporator</strong><br>
+            <%= @ward.corporator %><br>
+            <%= image_tag("call.png", "style":"width:15px;") %>
+            <%= @ward.corporator_number %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <strong>Sanitary Inspector</strong><br>
+            <%= @ward.inspector %><br>
+            <%= image_tag("call.png", "style":"width:15px;") %>
+            <%= @ward.inspector_number %>
+          </p>
+          <p>
+            <strong>Jawan</strong><br>
+            <%= @ward.jawan %><br>
+            <%= image_tag("call.png", "style":"width:15px;") %>
+            <%= @ward.jawan_number %>
+          </p>
+        </div>
+      </div>
+
+      <h2 class="m-t-2 m-b-1">Labour Strength</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>AMC Labour</th>
+            <th>Private Labour</th>
+            <th class="totals">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Male</th>
+            <td><%= @ward.amc_labour_male %></td>
+            <td><%= @ward.pvt_labour_male %></td>
+            <td class="totals"><%= @ward.amc_labour_male + @ward.pvt_labour_male %></td>
+          </tr>
+          <tr>
+            <th scope="row">Female</th>
+            <td><%= @ward.amc_labour_female %></td>
+            <td><%= @ward.pvt_labour_male %></td>
+            <td class="totals"><%= @ward.amc_labour_female + @ward.pvt_labour_female %></td>
+          </tr>
+        </tbody>
+        <tfoot class="totals">
+          <tr>
+            <th scope="row">Total</th>
+            <td><%= @ward.amc_labour_male + @ward.amc_labour_female %></td>
+            <td><%= @ward.pvt_labour_male + @ward.pvt_labour_female %></td>
+            <td><%= @ward.amc_labour_male + @ward.amc_labour_female + @ward.pvt_labour_male + @ward.pvt_labour_female %></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <h2 class="m-t-2 m-b-1">List of establishments</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.comm_est %></span>
+          Commercial
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"> <%= @ward.edu_est %></span>
+          Educational
+        </li>
+        <li class="list-group-item">
+          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.med_est %></span>
+          Medical
+        </li>
+      </ul>
+
+    </div>
+      
+  </div>
+
+</div>
+
+  

@@ -1,0 +1,98 @@
+<div class="container">
+
+  <h1 class="m-t-3">Wards</h1>
+  <p class="lead">Below is a list of all the wards we have collected data for. Click on the show link to view more information for each ward.</p>
+
+  <table class="table">
+    <thead >
+      <tr>
+        <th scope="row" rowspan="2">Ward #</th>
+        <th rowspan="2">Zone #</th>
+        <th rowspan="2">Ward Name</th>
+        <th rowspan="2">Ward Officer</th>
+       <!--  <th>Ward officer number</th>
+        <th>Corporator</th>
+        <th>Corporator number</th>
+        <th>Inspector</th>
+        <th>Inspector number</th>
+        <th>Jawan</th>
+        <th>Jawan number</th>
+        <th>Amc labour male</th>
+        <th>Amc labour female</th>
+        <th>Pvt labour male</th>
+        <th>Pvt labour female</th>
+        <th>Total labour male</th>
+        <th>Total labour female</th>
+        <th>V haathgadi</th>
+        <th>V cyclericks</th>
+        <th>V hydraulicauto</th>
+        <th>V loadingauto</th>
+        <th>V tractor</th>
+        <th>V 407</th>
+        <th>Hook loader</th>
+        <th>Skip loader</th>
+        <th>Households</th>
+        <th>Comm est</th>
+        <th>Edu est</th>
+        <th>Med est</th>
+        <th>Waste org</th>
+        <th>Waste dry</th> -->
+        <th colspan="3" class="text-center">Quantity of Waste (kg)</th>
+        <th colspan="1"></th>
+      </tr>
+      <tr>
+        <!-- <th colspan="4"></th> -->
+        <th>Organic</th>
+        <th>Recyclable</th>
+        <th>Hazardous</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @wards.each do |ward| %>
+        <tr>
+          <th scope="row"><%= ward.ward_number %></th>
+          <td><%= ward.zone %></td>
+          <td><%= ward.ward_name %></td>
+          <td><%= ward.ward_officer %></td>
+          <!-- <td><%= ward.ward_officer_number %></td>
+          <td><%= ward.corporator %></td>
+          <td><%= ward.corporator_number %></td>
+          <td><%= ward.inspector %></td>
+          <td><%= ward.inspector_number %></td>
+          <td><%= ward.jawan %></td>
+          <td><%= ward.jawan_number %></td>
+          <td><%= ward.amc_labour_male %></td>
+          <td><%= ward.amc_labour_female %></td>
+          <td><%= ward.pvt_labour_male %></td>
+          <td><%= ward.pvt_labour_female %></td>
+          <td><%= ward.total_labour_male %></td>
+          <td><%= ward.total_labour_female %></td>
+          <td><%= ward.v_haathgadi %></td>
+          <td><%= ward.v_cyclericks %></td>
+          <td><%= ward.v_hydraulicauto %></td>
+          <td><%= ward.v_loadingauto %></td>
+          <td><%= ward.v_tractor %></td>
+          <td><%= ward.v_407 %></td>
+          <td><%= ward.hook_loader %></td>
+          <td><%= ward.skip_loader %></td>
+          <td><%= ward.households %></td>
+          <td><%= ward.comm_est %></td>
+          <td><%= ward.edu_est %></td>
+          <td><%= ward.med_est %></td>
+          <td><%= ward.waste_org %></td>
+          <td><%= ward.waste_dry %></td> -->
+          <td><%= ward.waste_org_qty %></td>
+          <td><%= ward.waste_dry_qty %></td>
+          <td><%= ward.waste_haz_qty %></td>
+          <td><%= link_to 'Show', ward %></td>
+          <!-- <td><%= link_to 'Edit', edit_ward_path(ward) %></td>
+          <td><%= link_to 'Destroy', ward, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Ward', new_ward_path %>
+</div>
