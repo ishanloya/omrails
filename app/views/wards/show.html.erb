@@ -32,7 +32,7 @@
         </ul>
         <div class="card-block">
           <%= link_to "Edit Info", edit_ward_path(@ward), class: "card-link" %><br>
-          <%= link_to "Print Profile", class: "card-link" %><br>
+          <%= link_to "Printable PDF", ward_path(@ward, format: "pdf"), class: "card-link", target: "_blank" %><br>
           <%= link_to "Email PDF", class: "card-link" %><br>
           <%= link_to 'Delete Ward', @ward, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link" %>
         </div>  

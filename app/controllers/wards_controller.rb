@@ -10,6 +10,20 @@ class WardsController < ApplicationController
   # GET /wards/1
   # GET /wards/1.json
   def show
+    @ward = Ward.find(params[:id])
+
+    # https://www.youtube.com/watch?v=vp3nrafhjEc
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = WardPdf.new(@ward)
+        send_data pdf.render, filename: "Ward_#{@ward.ward_number}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline",
+                              page_size: "A4",
+                              page_layout: :landscape
+      end
+    end
   end
 
   # GET /wards/new
