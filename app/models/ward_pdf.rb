@@ -7,6 +7,12 @@ class WardPdf < Prawn::Document
 		ward_intro
 		ward_admin
 		labour_strength
+		logo
+	end
+
+	def logo
+
+		image Rails.root.join("app/assets/images/crt_logo_gray.png"), width: 200, at: [360, 800]
 	end
 
 	def ward_intro
@@ -16,6 +22,12 @@ class WardPdf < Prawn::Document
 
 	def ward_admin
 		move_down 20
+		text "Ward officer: #{@ward.ward_officer}", size: 14, style: :bold
+		text "#{@ward.ward_officer_number}"
+		text "Ward officer: #{@ward.ward_officer}", size: 14, style: :bold
+		text "#{@ward.ward_officer_number}"
+		text "Ward officer: #{@ward.ward_officer}", size: 14, style: :bold
+		text "#{@ward.ward_officer_number}"
 		text "Ward officer: #{@ward.ward_officer}", size: 14, style: :bold
 		text "#{@ward.ward_officer_number}"
 	end
