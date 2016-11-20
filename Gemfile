@@ -35,6 +35,7 @@ gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.3'
 gem 'gravatar_image_tag'
 gem 'prawn'
+gem 'prawn-table'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
