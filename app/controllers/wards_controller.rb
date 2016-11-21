@@ -17,9 +17,7 @@ class WardsController < ApplicationController
         pdf = WardPdf.new(@ward)
         send_data pdf.render, filename: "Ward_#{@ward.ward_number}.pdf",
                               type: "application/pdf",
-                              disposition: "inline",
-                              page_size: "A4",
-                              page_layout: :landscape
+                              disposition: "inline"
       end
     end
   end
