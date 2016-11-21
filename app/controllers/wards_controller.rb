@@ -10,8 +10,6 @@ class WardsController < ApplicationController
   # GET /wards/1
   # GET /wards/1.json
   def show
-    @ward = Ward.find(params[:id])
-
     # https://www.youtube.com/watch?v=vp3nrafhjEc
     respond_to do |format|
       format.html
@@ -78,11 +76,18 @@ class WardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ward
-      @ward = Ward.find(params[:id])
+      # change id to ward_number
+      @ward = Ward.find_by(ward_number: params[:ward_number])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ward_params
-      params.require(:ward).permit(:zone, :ward_number, :ward_name, :ward_officer, :ward_officer_number, :corporator, :corporator_number, :inspector, :inspector_number, :jawan, :jawan_number, :amc_labour_male, :amc_labour_female, :pvt_labour_male, :pvt_labour_female, :total_labour_male, :total_labour_female, :v_haathgadi, :v_cyclericks, :v_hydraulicauto, :v_loadingauto, :v_tractor, :v_407, :hook_loader, :skip_loader, :households, :comm_est, :edu_est, :med_est, :waste_org, :waste_dry, :waste_org_qty, :waste_dry_qty, :waste_haz_qty)
+      params.require(:ward).permit(:zone, :ward_number, :ward_name, :ward_officer, 
+        :ward_officer_number, :corporator, :corporator_number, :inspector, 
+        :inspector_number, :jawan, :jawan_number, :amc_labour_male, :amc_labour_female, 
+        :pvt_labour_male, :pvt_labour_female, :total_labour_male, :total_labour_female, 
+        :v_haathgadi, :v_cyclericks, :v_hydraulicauto, :v_loadingauto, :v_tractor, 
+        :v_407, :hook_loader, :skip_loader, :households, :comm_est, :edu_est, :med_est, 
+        :waste_org, :waste_dry, :waste_org_qty, :waste_dry_qty, :waste_haz_qty)
     end
 end

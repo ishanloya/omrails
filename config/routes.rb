@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :wards
   ActiveAdmin.routes(self)
   devise_for :users
   as :user do
@@ -25,7 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tweets 
+  resources :tweets
+  # get ':ward_number', to: 'users#show', as: :user
+
+  resources :wards, param: :ward_number
+
   root 'pages#home'
   get 'about', to: 'pages#about'
   get 'services', to: 'pages#services'

@@ -86,9 +86,7 @@
           <td><%= ward.waste_org_qty %></td>
           <td><%= ward.waste_dry_qty %></td>
           <td><%= ward.waste_haz_qty %></td>
-          <td><%= link_to 'Show', ward %></td>
-          <!-- <td><%= link_to 'Edit', edit_ward_path(ward) %></td>
-          <td><%= link_to 'Destroy', ward, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <td><%= link_to 'Show', ward_path(ward.ward_number) %></td>
         </tr>
       <% end %>
     </tbody>
