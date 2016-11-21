@@ -5,6 +5,7 @@ class WardPdf < Prawn::Document
 		super(page_size: "A4", bottom_margin: 20)
 		@ward = ward
 		ward_intro
+		# ward_admin
 		ward_admin
 		waste
 		labour_strength
@@ -26,35 +27,18 @@ class WardPdf < Prawn::Document
 	end
 
 	def ward_admin
-		y_position = cursor - 20
-		bounding_box([0, y_position], :width => 200) do
-			text "Ward officer", size: 16, style: :bold, color: '818a91'
-			text "#{@ward.ward_officer}"
-			image Rails.root.join("app/assets/images/call.png"), 
-			width: 10, at: [0,"#{cursor}".to_i]
-			text_box "#{@ward.ward_officer_number}", at: [13,"#{cursor}".to_i] 
-		end
-		bounding_box([280, y_position], :width => 200) do
-			text "Sanitary Inspector", size: 16, style: :bold, color: '818a91'
-			text "#{@ward.inspector}"
-			image Rails.root.join("app/assets/images/call.png"), 
-			width: 10, at: [0,"#{cursor}".to_i]
-			text_box "#{@ward.inspector_number}", at: [13,"#{cursor}".to_i]
-		end
-		y_position = cursor - 25
-		bounding_box([0, y_position], :width => 200) do
-			text "Corporator", size: 16, style: :bold, color: '818a91'
-			text "#{@ward.corporator}"
-			image Rails.root.join("app/assets/images/call.png"), 
-			width: 10, at: [0,"#{cursor}".to_i]	
-			text_box "#{@ward.corporator_number}", at: [13,"#{cursor}".to_i]
-		end
-		bounding_box([280, y_position], :width => 200) do
-			text "Jawan", size: 16, style: :bold, color: '818a91'
-			text "#{@ward.jawan}"
-			image Rails.root.join("app/assets/images/call.png"), 
-			width: 10, at: [0,"#{cursor}".to_i]
-			text_box "#{@ward.jawan_number}", at: [13,"#{cursor}".to_i]
+		data = [ [0, cursor - 20,"Ward Officer","#{@ward.ward_officer}","#{@ward.ward_officer_number}"],
+							[280, cursor - 20, "Sanitary Inspector","#{@ward.inspector}","#{@ward.inspector_number}"],
+							[0, cursor - 80, "Corporator","#{@ward.corporator}","#{@ward.corporator_number}"],
+							[280, cursor - 80, "Jawan","#{@ward.jawan}","#{@ward.jawan_number}"] ]
+		data.each do |x,y,title,name,number|
+			bounding_box(["#{x}".to_i, "#{y}".to_i], :width => 250) do
+				text "#{title}", size: 16, style: :bold, color: '818a91'
+				text "#{name}"
+				image Rails.root.join("app/assets/images/call.png"), 
+				width: 10, at: [0,"#{cursor}".to_i]
+				text_box "#{number}", at: [13,"#{cursor}".to_i] 
+			end
 		end
 	end
 
@@ -106,13 +90,9 @@ class WardPdf < Prawn::Document
 		bounding_box([0, y_position], :width => 300) do
 			text "Labour Strength", size: 16, style: :bold, color: '818a91'
 			data = [ ["","AMC","Private","Total"],
-							[{image: Rails.root.join("app/assets/images/gentleman.png"),
-								image_width: 25, position: :center, vposition: :center},
-								"#{@ward.amc_labour_male}","#{@ward.pvt_labour_male}",
+							["Male", "#{@ward.amc_labour_male}","#{@ward.pvt_labour_male}",
 								"#{@ward.amc_labour_male + @ward.pvt_labour_male}"],
-							[{image: Rails.root.join("app/assets/images/girl.png"),
-								image_width: 25, position: :center, vposition: :center},
-								"#{@ward.amc_labour_female}","#{@ward.pvt_labour_female}",
+							["Female", "#{@ward.amc_labour_female}","#{@ward.pvt_labour_female}",
 							"#{@ward.amc_labour_female + @ward.pvt_labour_female}"],
 							["Total","#{@ward.amc_labour_male + @ward.amc_labour_female}",
 								"#{@ward.pvt_labour_male + @ward.pvt_labour_female}",

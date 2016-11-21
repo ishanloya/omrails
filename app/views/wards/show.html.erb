@@ -148,15 +148,15 @@
       <h2 class="m-t-2 m-b-1">List of establishments</h2>
       <ul class="list-group">
         <li class="list-group-item">
-          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.comm_est %></span>
+          <%= image_tag("interface.png", "style":"width:30px;margin-right:10px;") %><span class="tag tag-default tag-pill pull-xs-right"><%= @ward.comm_est %></span>
           Commercial
         </li>
         <li class="list-group-item">
-          <span class="tag tag-default tag-pill pull-xs-right"> <%= @ward.edu_est %></span>
+           <%= image_tag("brainstorm.png", "style":"width:30px;margin-right:10px;") %><span class="tag tag-default tag-pill pull-xs-right"> <%= @ward.edu_est %></span>
           Educational
         </li>
         <li class="list-group-item">
-          <span class="tag tag-default tag-pill pull-xs-right"><%= @ward.med_est %></span>
+           <%= image_tag("hospital.png", "style":"width:30px;margin-right:10px;") %><span class="tag tag-default tag-pill pull-xs-right"><%= @ward.med_est %></span>
           Medical
         </li>
       </ul>
