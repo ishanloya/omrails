@@ -2,7 +2,7 @@
 
 class WardPdf < Prawn::Document
 	def initialize(ward)
-		super(page_size: "A4")
+		super(page_size: "A4", bottom_margin: 20)
 		@ward = ward
 		ward_intro
 		ward_admin
@@ -25,12 +25,13 @@ class WardPdf < Prawn::Document
 	end
 
 	def logo
-
-		image Rails.root.join("app/assets/images/crt_logo_gray.png"), width: 200, at: [360, 800]
+		image Rails.root.join("app/assets/images/crt_crop_gray.png"), 
+		width: 100, vposition: :top, position: :right
 	end
 
 	def ward_intro
-		text "<font size='30'><color rgb='000000'><b>Ward #{@ward.ward_number}</b></color></font>  Zone #{@ward.zone}",
+		text "<font size='30'><color rgb='000000'>" +
+		"<b>Ward #{@ward.ward_number}</b></color></font>  Zone #{@ward.zone}",
 		size: 20, color: '818a91', inline_format: :true  
 
 		text "#{@ward.ward_name}"
