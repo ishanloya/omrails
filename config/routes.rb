@@ -25,9 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :tweets
-  # get ':ward_number', to: 'users#show', as: :user
-
-  resources :wards, param: :ward_number
+  resources :wards
 
   root 'pages#home'
   get 'about', to: 'pages#about'

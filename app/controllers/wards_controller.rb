@@ -74,8 +74,7 @@ class WardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ward
-      # change id to ward_number
-      @ward = Ward.find_by(ward_number: params[:ward_number])
+      @ward = Ward.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

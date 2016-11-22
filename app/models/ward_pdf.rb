@@ -2,7 +2,7 @@
 
 class WardPdf < Prawn::Document
 	def initialize(ward)
-		super(page_size: "A4", bottom_margin: 20)
+		super(page_size: "A4", bottom_margin: 25)
 		@ward = ward
 		ward_intro
 		# ward_admin
@@ -104,8 +104,11 @@ class WardPdf < Prawn::Document
 				cells.border_color = 'eceeef'
 				cells.align = :center
 				
-				row(3).font_style = :bold
-				column(3).font_style = :bold
+				# row(3).font_style = :bold
+				row(3).text_color = '818a91'
+				column(0).align = :right
+				# column(3).font_style = :bold
+				column(3).text_color = '818a91'
 				row(0).valign = :bottom
 				# row(0).font_style = :bold
 				columns([0,2]).borders = [:right]
@@ -120,7 +123,7 @@ class WardPdf < Prawn::Document
 	
 
 	def footer
-		text_box "<b>© #{Date.today.year} Civic Response Team</b>\n<color rgb='818a91'>B-14, MIDC Railway Station, Aurangabad - 431 001, India, " + 
+		text_box "<color rgb='818a91'>© #{Date.today.year} Civic Response Team, B-14, MIDC Railway Station, Aurangabad - 431 001, India\n" + 
 		"Phone: +91 80074 47750, Email: info@civicresponseteam.com</color>", 
 		valign: :bottom, align: :center, size: 8, inline_format: :true
 	end
