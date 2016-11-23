@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   end
 
   resources :tweets
-  resources :wards, param: :ward_number
+  resources :wards, param: :ward_number do
+    collection do
+      post :import
+    end
+  end
 
   root 'pages#home'
   get 'about', to: 'pages#about'

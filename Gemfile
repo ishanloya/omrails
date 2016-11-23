@@ -36,6 +36,7 @@ gem 'aws-sdk', '~> 2.3'
 gem 'gravatar_image_tag'
 gem 'prawn'
 gem 'prawn-table'
+gem 'roo', '~> 2.5.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

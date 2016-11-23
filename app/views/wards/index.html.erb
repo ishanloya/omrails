@@ -67,8 +67,6 @@
           <td><%= ward.amc_labour_female %></td>
           <td><%= ward.pvt_labour_male %></td>
           <td><%= ward.pvt_labour_female %></td>
-          <td><%= ward.total_labour_male %></td>
-          <td><%= ward.total_labour_female %></td>
           <td><%= ward.v_haathgadi %></td>
           <td><%= ward.v_cyclericks %></td>
           <td><%= ward.v_hydraulicauto %></td>
@@ -86,11 +84,15 @@
           <td><%= ward.waste_org_qty %></td>
           <td><%= ward.waste_dry_qty %></td>
           <td><%= ward.waste_haz_qty %></td>
-          <td><%= link_to 'Show', ward %></td>
+          <td><%= link_to 'Show', ward_path(ward.ward_number) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br>
+  <%= form_tag import_wards_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import", class: "btn btn-primary m-b-1" %>
+  <% end %>
   <%= link_to 'New Ward', new_ward_path %>
 </div>

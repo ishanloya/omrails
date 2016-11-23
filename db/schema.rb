@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120135330) do
+ActiveRecord::Schema.define(version: 20161123022404) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20161120135330) do
 
   create_table "wards", force: :cascade do |t|
     t.integer  "zone"
-    t.string   "ward_number"
+    t.integer  "ward_number"
     t.string   "ward_name"
     t.string   "ward_officer"
     t.string   "ward_officer_number"
@@ -113,8 +113,6 @@ ActiveRecord::Schema.define(version: 20161120135330) do
     t.integer  "amc_labour_female"
     t.integer  "pvt_labour_male"
     t.integer  "pvt_labour_female"
-    t.integer  "total_labour_male"
-    t.integer  "total_labour_female"
     t.integer  "v_haathgadi"
     t.integer  "v_cyclericks"
     t.integer  "v_hydraulicauto"
@@ -134,6 +132,7 @@ ActiveRecord::Schema.define(version: 20161120135330) do
     t.float    "waste_haz_qty"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["ward_number"], name: "index_wards_on_ward_number", unique: true
   end
 
 end
