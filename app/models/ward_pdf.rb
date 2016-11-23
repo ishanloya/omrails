@@ -1,5 +1,4 @@
 # https://www.youtube.com/watch?v=vp3nrafhjEc
-
 class WardPdf < Prawn::Document
 	def initialize(ward)
 		super(page_size: "A4", bottom_margin: 25)
@@ -10,7 +9,8 @@ class WardPdf < Prawn::Document
 		waste
 		labour_strength
 		logo
-		footer	
+		footer
+		# vehicles
 		# stroke_axis(at: [300,0])
 	end
 
@@ -87,7 +87,7 @@ class WardPdf < Prawn::Document
 
 	def labour_strength
 		y_position = cursor - 30
-		bounding_box([0, y_position], :width => 300) do
+		bounding_box([280, y_position], :width => 300) do
 			text "Labour Strength", size: 16, style: :bold, color: '818a91'
 			data = [ ["","AMC","Private","Total"],
 							["Male", "#{@ward.amc_labour_male}","#{@ward.pvt_labour_male}",
@@ -116,6 +116,30 @@ class WardPdf < Prawn::Document
 				row(2).borders = [:bottom]
 				row(0).columns([0,2]).borders = [:bottom, :right]
 				row(2).columns([0,2]).borders = [:bottom, :right]
+			end
+		end
+	# end
+
+	# def vehicles
+		# y_position = cursor - 30
+		bounding_box([0, y_position], :width => 300) do
+			text "Vehicles & Containers", size: 16, style: :bold, color: '818a91'
+			data = [ ["Haathgadis", "#{@ward.v_haathgadi}"],
+								["Cycle Rickshaws", "#{@ward.v_cyclericks}"],
+								["Hydraulic Autos", "#{@ward.v_hydraulicauto}"],
+								["Loading Autos", "#{@ward.v_loadingauto}"],
+								["Tractors", "#{@ward.v_tractor}"],
+								["407", "#{@ward.v_407}"],
+								["Hook Loaders", "#{@ward.hook_loader}"],
+								["Skip Loaders", "#{@ward.skip_loader}"] ]
+			table(data) do
+				cells.padding = 10
+				cells.borders = []
+				cells.border_color = 'eceeef'
+				cells.align = :right
+				row(0..6).borders = [:bottom]
+				column(1).borders = [:left]
+				row(0..6).column(1).borders = [:bottom, :left]
 			end
 		end
 	end
