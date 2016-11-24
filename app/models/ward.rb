@@ -1,6 +1,8 @@
 class Ward < ApplicationRecord
 
 	validates :ward_number, presence: true, uniqueness: true
+	validates :zone, :ward_name, :ward_officer, :corporator, :inspector, :jawan, 
+		presence: true
 
 	def to_param
 	  ward_number

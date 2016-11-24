@@ -39,8 +39,9 @@
   </table>
   <br>
   <%= form_tag import_wards_path, multipart: true do %>
-    <%= file_field_tag :file %>
+    <%= file_field_tag :file, class: "form-field" %>
     <%= submit_tag "Import", class: "btn btn-primary m-b-1" %>
   <% end %>
   <%= link_to 'New Ward', new_ward_path %>
+  
 </div>
