@@ -14,7 +14,7 @@
 </div>
 
 <div class="container">
-	<h1 class="m-b-2">Focus Areas</h1>
+	<!-- <h1 class="m-b-2">Focus Areas</h1> -->
 	<div class="row m-b-3">
 		<div class="col-sm-6">
 			<h2>Urban Habitats</h2>
@@ -29,4 +29,43 @@
 	</div>
 
 	<!-- <p>Sign up here</p> -->
+</div>
+
+<div class="container">
+	<div class="row m-b-3">
+		<div class="col-sm-6">
+			<h2>Majhi City Taka-Tak</h2>
+			<%= image_tag('bajaj.png', class: "p-y-2 p-r-3", style: "width: 70%;") %>
+			<p>In a rare public-private partnership, the city of Aurangabad has come together to take responsibility of its solid waste &amp; has decided to comply with the Municipal Solid Waste Rules, 2000 by achieving the following objectives:
+				<ul>
+					<li>100% segregation at source</li>
+					<li>Provide door-to-door collection of segregated waste</li>
+					<li>Decentralised treatment of waste</li>
+					<li>Resource recovery</li>
+					<li>Ban of plastic bags under 50 microns and encouragement of use of cloth bags</li>
+					<li>Create a zero landfill city by eliminating dumping of waste at open spaces like Naregaon</li>
+					<li>Dignity of labour</li>
+				</ul>
+			</p>
+			<%= link_to "Read More", about_path %>
+		</div>
+		<div class="col-sm-6">
+			<h2 class="m-b-2">Latest Tweets</h2>
+			<ul class="media-list">
+				<% $twitter.list_timeline(703147407157006336).take(3).collect do |tweet| %>
+				  <li class="media">
+				    <div class="media-left">
+				      <%= link_to image_tag("#{tweet.user.profile_image_url(size = :original)}", class: "media-object", alt: "Profile pic", style: "width: 50px;"), "#{tweet.user.uri}", target: "_blank" %>
+				    </div>
+				    <div class="media-body">
+				      <h5 class="media-heading"><%= tweet.user.name %> <small class="text-muted"><%= "@" + tweet.user.screen_name %></small></h5>
+				      <p><%= auto_link(tweet.text, username_include_symbol: true, target: "_blank").html_safe %><br>
+				      	<small class="text-muted">Tweeted <%= time_ago_in_words(tweet.created_at) %> ago</small>
+				      </p>
+				    </div>
+				  </li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
 </div>
