@@ -19,26 +19,21 @@
         <a class="navbar-brand" href="/"><strong>CRT^</strong></a>
     		<ul class="nav navbar-nav">
           <%= nav_link "Home", root_path %>
-        	<%= nav_link "About", about_path %>
+          <%= nav_link "About", about_path %>
           <%= nav_link "Services", services_path %>
           <%= nav_link "Wards", wards_path %>
           <%= nav_link "Items", items_path %>
           <%= nav_link "Contact", contact_path %>
-
       		<% if user_signed_in? %>
             <li class="nav-item pull-xs-right">
               <%= link_to "Logout", signout_path, method: :delete, class: "nav-link" %>
             </li>
-            <li class="nav-item pull-xs-right">
-              <%= link_to current_user.first_name, user_path(current_user.username), class: "nav-link" %>
-            </li>
+              <%= nav_link_right current_user.first_name, user_path(current_user.username) %>
           <% else %>
             <li class="nav-item pull-xs-right">
               <%= link_to "Sign up", signup_path, class: "btn btn-success" %>
             </li>
-            <li class="nav-item pull-xs-right">
-              <%= link_to "Login", login_path, class: "nav-link" %>
-            </li>
+              <%= nav_link_right "Login", login_path %>
             <!-- <form class="form-inline pull-xs-right">
       		    <input class="form-control" type="text" placeholder="Search">
       		    <button class="btn btn-outline-success" type="submit">Login</button>

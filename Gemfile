@@ -37,7 +37,9 @@ gem 'gravatar_image_tag'
 gem 'prawn'
 gem 'prawn-table'
 gem 'roo', '~> 2.5.0'
-
+gem 'gmaps4rails'
+gem 'twitter'
+gem 'twitter-text'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
