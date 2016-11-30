@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'projects', to: 'pages#projects'
   get 'recognition', to: 'pages#recognition'
   get 'contact', to: 'pages#contact_us'
+  get 'test', to: 'pages#test'
 
   get '*path' => redirect('/')
 

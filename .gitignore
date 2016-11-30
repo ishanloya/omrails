@@ -23,3 +23,6 @@
 
 # Ignore public system folder
 /public/system
+
+# Twitter API kets
+config/initializers/twitter.rb
