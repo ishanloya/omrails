@@ -23,7 +23,7 @@
     </thead>
 
     <tbody>
-      <% @wards.each do |ward| %>
+      <% @wards.order(:ward_number).each do |ward| %>
         <tr>
           <th scope="row"><%= ward.ward_number %></th>
           <td><%= ward.zone %></td>
